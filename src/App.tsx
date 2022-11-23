@@ -7,7 +7,7 @@ function App() {
         variant={CardVariant.primary}
         width="200px"
         height="200px"
-        onClickFunction={() => console.log("Click")}
+        onClickFunction={(num) => console.log("Click", num)}
       >
         <button>Click</button>
       </Card>
