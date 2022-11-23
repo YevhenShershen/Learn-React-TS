@@ -1,47 +1,24 @@
-import React, { useState, useEffect } from "react";
 import Card, { CardVariant } from "./components/Card";
-import List from "./components/List";
-import UserItem from "./components/UserItem";
 import EventsExample from "./components/EventsExample";
-import Todos from "./components/Todos";
-import { IUser } from "./components/types/types";
-import { ITodo } from "./components/types/types";
-import axios from "axios";
+import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
+import UsersPage from "./components/UsersPage";
+import TodosPage from "./components/TodosPage";
 function App() {
-  const [users, setUsers] = useState<IUser[]>([]);
-  const [todos, setTodos] = useState<ITodo[]>([]);
-  const todoUrl = "todos?_limit=10";
-  const usersUrl = "users";
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-  useEffect(() => {
-    fetchTodos();
-  }, []);
-  async function fetchUsers() {
-    try {
-      const response = await axios.get<IUser[]>(
-        `https://jsonplaceholder.typicode.com/${usersUrl}`
-      );
-      setUsers(response.data);
-    } catch (e) {
-      alert(e);
-    }
-  }
-  async function fetchTodos() {
-    try {
-      const response = await axios.get<ITodo[]>(
-        `https://jsonplaceholder.typicode.com/${todoUrl}`
-      );
-      setTodos(response.data);
-    } catch (e) {
-      alert(e);
-    }
-  }
-
   return (
     <div className="App">
-      <EventsExample />
+      <BrowserRouter>
+        <div>
+          <NavLink to={"/users"}>Пользователи</NavLink>
+          <NavLink to="/todos">Список дел</NavLink>
+        </div>
+        <div>
+          <Routes>
+            <Route path={"/users"} element={<UsersPage />} />
+            <Route path={"/todos"} element={<TodosPage />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+      {/* <EventsExample />
       <Card
         variant={CardVariant.primary}
         width="200px"
@@ -49,21 +26,7 @@ function App() {
         onClickFunction={(num) => console.log("Click", num)}
       >
         <button>Click</button>
-      </Card>
-      <List
-        //передаем массив пользователей items={users}
-        items={users}
-        //renderItem эта функция параметром принимает одного пользователя типа IUser
-        //и возвращает компонент UserItem
-        renderItem={(user: IUser) => <UserItem user={user} key={user.id} />}
-      />
-      <List
-        //передаем массив пользователей items={users}
-        items={todos}
-        //renderItem эта функция параметром принимает одного пользователя типа IUser
-        //и возвращает компонент UserItem
-        renderItem={(el: ITodo) => <Todos todo={el} key={el.id} />}
-      />
+      </Card> */}
     </div>
   );
 }
