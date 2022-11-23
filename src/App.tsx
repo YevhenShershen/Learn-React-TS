@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card, { CardVariant } from "./components/Card";
 import List from "./components/List";
 import UserItem from "./components/UserItem";
+import EventsExample from "./components/EventsExample";
 import Todos from "./components/Todos";
 import { IUser } from "./components/types/types";
 import { ITodo } from "./components/types/types";
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <div className="App">
+      <EventsExample />
       <Card
         variant={CardVariant.primary}
         width="200px"
@@ -69,6 +71,6 @@ function App() {
 export default App;
 // install new project with TS
 //npx create-react-app . --template typescript
-
+//https://www.youtube.com/watch?v=92qcfeWxtnY
 //документация https://habr.com/ru/post/443424/
 //Дженерики https://habr.com/ru/company/tinkoff/blog/588655/
