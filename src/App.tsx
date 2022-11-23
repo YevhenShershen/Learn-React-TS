@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card, { CardVariant } from "./components/Card";
-import UserList from "./components/UserList";
+import List from "./components/List";
+import UserItem from "./components/UserItem";
 import { IUser } from "./components/types/types";
 import axios from "axios";
 function App() {
@@ -29,7 +30,13 @@ function App() {
       >
         <button>Click</button>
       </Card>
-      <UserList users={users} />
+      <List
+      //передаем массив пользователей items={users}
+        items={users}
+        //renderItem эта функция параметром принимает одного пользователя типа IUser
+        //и возвращает компонент UserItem
+        renderItem={(user: IUser) => <UserItem user={user} key={user.id} />}
+      />
     </div>
   );
 }
@@ -39,3 +46,4 @@ export default App;
 //npx create-react-app . --template typescript
 
 //документация https://habr.com/ru/post/443424/
+//Дженерики https://habr.com/ru/company/tinkoff/blog/588655/
