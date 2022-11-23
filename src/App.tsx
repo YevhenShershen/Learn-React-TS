@@ -1,9 +1,16 @@
 import React from "react";
-import Card from "./components/Card";
+import Card, { CardVariant } from "./components/Card";
 function App() {
   return (
     <div className="App">
-      <Card width="200px" height="200px" />
+      <Card
+        variant={CardVariant.primary}
+        width="200px"
+        height="200px"
+        onClickFunction={() => console.log("Click")}
+      >
+        <button>Click</button>
+      </Card>
     </div>
   );
 }
@@ -11,3 +18,5 @@ function App() {
 export default App;
 // install new project with TS
 //npx create-react-app . --template typescript
+
+//документация https://habr.com/ru/post/443424/
