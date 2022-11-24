@@ -3,9 +3,11 @@ import { IUser } from "./types/types";
 import UserItem from "./UserItem";
 import axios from "axios";
 import List from "./List";
+import { useNavigate } from "react-router-dom";
 const UsersPage: FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const usersUrl = "users";
+  const history = useNavigate();
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -25,7 +27,13 @@ const UsersPage: FC = () => {
       items={users}
       //renderItem эта функция параметром принимает одного пользователя типа IUser
       //и возвращает компонент UserItem
-      renderItem={(user: IUser) => <UserItem user={user} key={user.id} />}
+      renderItem={(user: IUser) => (
+        <UserItem
+          user={user}
+          key={user.id}
+          onCLick={(user) => history("/users/" + user.id)}
+        />
+      )}
     />
   );
 };

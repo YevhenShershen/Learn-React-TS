@@ -3,6 +3,8 @@ import EventsExample from "./components/EventsExample";
 import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
 import UsersPage from "./components/UsersPage";
 import TodosPage from "./components/TodosPage";
+import UserItemPage from "./components/UserItemPage";
+import TodoItemPage from "./components/TodoItemPage";
 function App() {
   return (
     <div className="App">
@@ -15,6 +17,8 @@ function App() {
           <Routes>
             <Route path={"/users"} element={<UsersPage />} />
             <Route path={"/todos"} element={<TodosPage />} />
+            <Route path={"/todos/:id"} element={<TodoItemPage />} />
+            <Route path={"/users/:id"} element={<UserItemPage />} />
           </Routes>
         </div>
       </BrowserRouter>
